@@ -1,0 +1,3932 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2024-12-30T18:26:59Z"
+    creationTimestamp: "2024-12-30T18:26:59Z"
+    generateName: cwagent-prometheus-76974949db-
+    labels:
+      app: cwagent-prometheus
+      pod-template-hash: 76974949db
+    name: cwagent-prometheus-76974949db-g6th2
+    namespace: amazon-cloudwatch
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: cwagent-prometheus-76974949db
+      uid: 558b2ca7-8cd3-4a29-a538-3644b3f35fef
+    resourceVersion: "127709"
+    uid: ed3333d7-2eaf-4c11-90c1-577d75ce75e4
+  spec:
+    containers:
+    - env:
+      - name: CI_VERSION
+        value: k8s/1.3.29
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: regional
+      - name: AWS_DEFAULT_REGION
+        value: us-east-1
+      - name: AWS_REGION
+        value: us-east-1
+      - name: AWS_ROLE_ARN
+        value: arn:aws:iam::820242912925:role/eksctl-agent-test-cluster-addon-iamserviceacc-Role1-tMJixVJyL6k7
+      - name: AWS_WEB_IDENTITY_TOKEN_FILE
+        value: /var/run/secrets/eks.amazonaws.com/serviceaccount/token
+      image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929
+      imagePullPolicy: Always
+      name: cloudwatch-agent
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1000Mi
+        requests:
+          cpu: 200m
+          memory: 200Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /etc/cwagentconfig
+        name: prometheus-cwagentconfig
+      - mountPath: /etc/prometheusconfig
+        name: prometheus-config
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-jlhb7
+        readOnly: true
+      - mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount
+        name: aws-iam-token
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: ip-192-168-30-107.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: cwagent-prometheus
+    serviceAccountName: cwagent-prometheus
+    terminationGracePeriodSeconds: 60
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: aws-iam-token
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            audience: sts.amazonaws.com
+            expirationSeconds: 86400
+            path: token
+    - configMap:
+        defaultMode: 420
+        name: prometheus-cwagentconfig
+      name: prometheus-cwagentconfig
+    - configMap:
+        defaultMode: 420
+        name: prometheus-config
+      name: prometheus-config
+    - name: kube-api-access-jlhb7
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T18:27:00Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T18:26:59Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:25:57Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T18:27:00Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T18:26:59Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://d990b79cc667107b22ff690ce141c2d6ea7a0c583acbef22f2d8a59c43ee1554
+      image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929
+      imageID: public.ecr.aws/cloudwatch-agent/cloudwatch-agent@sha256:f3427f46e4a7de9c2e6009ab7955924ed0454e6e021cff729ff7f9d24f13555b
+      lastState: {}
+      name: cloudwatch-agent
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T18:27:00Z"
+    hostIP: 192.168.30.107
+    hostIPs:
+    - ip: 192.168.30.107
+    phase: Running
+    podIP: 192.168.12.144
+    podIPs:
+    - ip: 192.168.12.144
+    qosClass: Burstable
+    startTime: "2024-12-30T18:26:59Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T22:26:10Z"
+    generateName: httpd-webapp-5ccb7c4d57-
+    labels:
+      app: httpd-webapp
+      pod-template-hash: 5ccb7c4d57
+    name: httpd-webapp-5ccb7c4d57-4526b
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: httpd-webapp-5ccb7c4d57
+      uid: 12649067-c418-484a-94d5-e01c39f0e5b9
+    resourceVersion: "128050"
+    uid: dca2c43c-f127-4a77-99db-84543254ce25
+  spec:
+    containers:
+    - image: httpd
+      imagePullPolicy: Always
+      name: nodejs-webapp
+      resources:
+        limits:
+          cpu: 500m
+        requests:
+          cpu: 200m
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7lw27
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: ip-192-168-34-72.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-7lw27
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:05Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:05Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://c30974e0e51da330e30ac5b283e4726ee51085349af1ce7de12805225be2fd5d
+      image: docker.io/library/httpd:latest
+      imageID: docker.io/library/httpd@sha256:72f6e24600718dddef131de7cb5b31496b05c5af41e9db8707df371859a350bb
+      lastState: {}
+      name: nodejs-webapp
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T22:27:12Z"
+    hostIP: 192.168.34.72
+    hostIPs:
+    - ip: 192.168.34.72
+    phase: Running
+    podIP: 192.168.40.138
+    podIPs:
+    - ip: 192.168.40.138
+    qosClass: Burstable
+    startTime: "2024-12-30T22:27:05Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T22:26:10Z"
+    generateName: httpd-webapp-5ccb7c4d57-
+    labels:
+      app: httpd-webapp
+      pod-template-hash: 5ccb7c4d57
+    name: httpd-webapp-5ccb7c4d57-824gw
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: httpd-webapp-5ccb7c4d57
+      uid: 12649067-c418-484a-94d5-e01c39f0e5b9
+    resourceVersion: "128054"
+    uid: e3cceccf-f0f8-4b3d-b1a9-8cca2429683a
+  spec:
+    containers:
+    - image: httpd
+      imagePullPolicy: Always
+      name: nodejs-webapp
+      resources:
+        limits:
+          cpu: 500m
+        requests:
+          cpu: 200m
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-82lfk
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: ip-192-168-34-72.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-82lfk
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:05Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:13Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:05Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://9c5c1a5bd05ac96443ad9a305313e3ce949c4469d66aa9442fc401edfef29404
+      image: docker.io/library/httpd:latest
+      imageID: docker.io/library/httpd@sha256:72f6e24600718dddef131de7cb5b31496b05c5af41e9db8707df371859a350bb
+      lastState: {}
+      name: nodejs-webapp
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T22:27:12Z"
+    hostIP: 192.168.34.72
+    hostIPs:
+    - ip: 192.168.34.72
+    phase: Running
+    podIP: 192.168.63.201
+    podIPs:
+    - ip: 192.168.63.201
+    qosClass: Burstable
+    startTime: "2024-12-30T22:27:05Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:25:57Z"
+    deletionGracePeriodSeconds: 30
+    deletionTimestamp: "2024-12-30T22:26:40Z"
+    generateName: httpd-webapp-5ccb7c4d57-
+    labels:
+      app: httpd-webapp
+      pod-template-hash: 5ccb7c4d57
+    name: httpd-webapp-5ccb7c4d57-x89zp
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: httpd-webapp-5ccb7c4d57
+      uid: 12649067-c418-484a-94d5-e01c39f0e5b9
+    resourceVersion: "127788"
+    uid: 36ba074b-6c12-4c7c-a560-55c7447c22b6
+  spec:
+    containers:
+    - image: httpd
+      imagePullPolicy: Always
+      name: nodejs-webapp
+      resources:
+        limits:
+          cpu: 500m
+        requests:
+          cpu: 200m
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-9kktp
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: ip-192-168-47-225.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-9kktp
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:23Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:02Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:23Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: PodScheduled
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:10Z"
+      message: 'Eviction API: evicting'
+      reason: EvictionByEvictionAPI
+      status: "True"
+      type: DisruptionTarget
+    containerStatuses:
+    - containerID: containerd://873c626c942a3eb49f22fc208feeb02276df45fb15d41131056cf4c845166bdf
+      image: docker.io/library/httpd:latest
+      imageID: docker.io/library/httpd@sha256:72f6e24600718dddef131de7cb5b31496b05c5af41e9db8707df371859a350bb
+      lastState: {}
+      name: nodejs-webapp
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:23Z"
+    hostIP: 192.168.47.225
+    hostIPs:
+    - ip: 192.168.47.225
+    phase: Running
+    podIP: 192.168.62.109
+    podIPs:
+    - ip: 192.168.62.109
+    qosClass: Burstable
+    startTime: "2024-12-30T17:35:09Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:25:57Z"
+    deletionGracePeriodSeconds: 30
+    deletionTimestamp: "2024-12-30T22:26:40Z"
+    generateName: httpd-webapp-5ccb7c4d57-
+    labels:
+      app: httpd-webapp
+      pod-template-hash: 5ccb7c4d57
+    name: httpd-webapp-5ccb7c4d57-zgwdp
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: httpd-webapp-5ccb7c4d57
+      uid: 12649067-c418-484a-94d5-e01c39f0e5b9
+    resourceVersion: "127801"
+    uid: 67b0e274-ef63-49a3-af7b-26516c3993a5
+  spec:
+    containers:
+    - image: httpd
+      imagePullPolicy: Always
+      name: nodejs-webapp
+      resources:
+        limits:
+          cpu: 500m
+        requests:
+          cpu: 200m
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-mqgj7
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: ip-192-168-47-225.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-mqgj7
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:24Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:03Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:24Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: PodScheduled
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:10Z"
+      message: 'Eviction API: evicting'
+      reason: EvictionByEvictionAPI
+      status: "True"
+      type: DisruptionTarget
+    containerStatuses:
+    - containerID: containerd://2f00acb74d6d2ce993eb9a329b3aef593e15702b1b47456bb34b92f2c8979bca
+      image: docker.io/library/httpd:latest
+      imageID: docker.io/library/httpd@sha256:72f6e24600718dddef131de7cb5b31496b05c5af41e9db8707df371859a350bb
+      lastState: {}
+      name: nodejs-webapp
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:23Z"
+    hostIP: 192.168.47.225
+    hostIPs:
+    - ip: 192.168.47.225
+    phase: Running
+    podIP: 192.168.63.33
+    podIPs:
+    - ip: 192.168.63.33
+    qosClass: Burstable
+    startTime: "2024-12-30T17:35:09Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      eks.amazonaws.com/timestamp: 2024-12-30 16:23:02.02577192 +0000 UTC m=+1218.782128025
+      kubectl.kubernetes.io/restartedAt: "2024-12-30T16:26:47Z"
+    creationTimestamp: "2024-12-30T22:26:50Z"
+    generateName: aws-node-
+    labels:
+      app.kubernetes.io/instance: aws-vpc-cni
+      app.kubernetes.io/name: aws-node
+      controller-revision-hash: 6f6679667f
+      k8s-app: aws-node
+      pod-template-generation: "2"
+    name: aws-node-dngtw
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: aws-node
+      uid: 7512acca-3d8e-4840-8127-19b9ac9ae7a2
+    resourceVersion: "128029"
+    uid: beb84a0d-ffb1-4549-b4db-eb94216c1207
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-34-72.ec2.internal
+    containers:
+    - env:
+      - name: ADDITIONAL_ENI_TAGS
+        value: '{}'
+      - name: ANNOTATE_POD_IP
+        value: "false"
+      - name: AWS_VPC_CNI_NODE_PORT_SUPPORT
+        value: "true"
+      - name: AWS_VPC_ENI_MTU
+        value: "9001"
+      - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_EXTERNALSNAT
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_LOGLEVEL
+        value: DEBUG
+      - name: AWS_VPC_K8S_CNI_LOG_FILE
+        value: /host/var/log/aws-routed-eni/ipamd.log
+      - name: AWS_VPC_K8S_CNI_RANDOMIZESNAT
+        value: prng
+      - name: AWS_VPC_K8S_CNI_VETHPREFIX
+        value: eni
+      - name: AWS_VPC_K8S_PLUGIN_LOG_FILE
+        value: /var/log/aws-routed-eni/plugin.log
+      - name: AWS_VPC_K8S_PLUGIN_LOG_LEVEL
+        value: DEBUG
+      - name: CLUSTER_ENDPOINT
+        value: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+      - name: CLUSTER_NAME
+        value: agent-test-cluster
+      - name: DISABLE_INTROSPECTION
+        value: "false"
+      - name: DISABLE_METRICS
+        value: "false"
+      - name: DISABLE_NETWORK_RESOURCE_PROVISIONING
+        value: "false"
+      - name: ENABLE_IPv4
+        value: "true"
+      - name: ENABLE_IPv6
+        value: "false"
+      - name: ENABLE_POD_ENI
+        value: "false"
+      - name: ENABLE_PREFIX_DELEGATION
+        value: "false"
+      - name: ENABLE_SUBNET_DISCOVERY
+        value: "true"
+      - name: NETWORK_POLICY_ENFORCING_MODE
+        value: standard
+      - name: VPC_CNI_VERSION
+        value: v1.19.0
+      - name: VPC_ID
+        value: vpc-01a601d6dde9a7460
+      - name: WARM_ENI_TARGET
+        value: "1"
+      - name: WARM_PREFIX_TARGET
+        value: "1"
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni:v1.19.0-eksbuild.1
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: aws-node
+      ports:
+      - containerPort: 61678
+        hostPort: 61678
+        name: metrics
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+          - NET_RAW
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /host/etc/cni/net.d
+        name: cni-net-dir
+      - mountPath: /host/var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7jh75
+        readOnly: true
+    - args:
+      - --enable-ipv6=false
+      - --enable-network-policy=false
+      - --enable-cloudwatch-logs=false
+      - --enable-policy-event-logs=false
+      - --log-file=/var/log/aws-routed-eni/network-policy-agent.log
+      - --metrics-bind-addr=:8162
+      - --health-probe-bind-addr=:8163
+      - --conntrack-cache-cleanup-period=300
+      env:
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-eks-nodeagent
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /sys/fs/bpf
+        name: bpf-pin-path
+      - mountPath: /var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7jh75
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    initContainers:
+    - env:
+      - name: DISABLE_TCP_EARLY_DEMUX
+        value: "false"
+      - name: ENABLE_IPv6
+        value: "false"
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-vpc-cni-init
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7jh75
+        readOnly: true
+    nodeName: ip-192-168-34-72.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: aws-node
+    serviceAccountName: aws-node
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /sys/fs/bpf
+        type: ""
+      name: bpf-pin-path
+    - hostPath:
+        path: /opt/cni/bin
+        type: ""
+      name: cni-bin-dir
+    - hostPath:
+        path: /etc/cni/net.d
+        type: ""
+      name: cni-net-dir
+    - hostPath:
+        path: /var/log/aws-routed-eni
+        type: DirectoryOrCreate
+      name: log-dir
+    - hostPath:
+        path: /var/run/aws-node
+        type: DirectoryOrCreate
+      name: run-dir
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - name: kube-api-access-7jh75
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:57Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:59Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:08Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:27:08Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://ba910d2ec6ea650c7be44b6cd27572a19a96afb72a23bcd1107ba13dd90e6647
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent@sha256:f3280f090b6c5d3128357d8710db237931f5e1089e8017ab3d9cece429d77954
+      lastState: {}
+      name: aws-eks-nodeagent
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T22:27:08Z"
+    - containerID: containerd://c6ea8c3ee9eca663a834df1f7d59d43ca6048b7a51d433aa61854b6b1b452507
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni:v1.19.0
+      imageID: sha256:59728c6d6f3a030672ca78d141d1cfbfea4bb3259075f6614c40bbf375948595
+      lastState: {}
+      name: aws-node
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T22:27:03Z"
+    hostIP: 192.168.34.72
+    hostIPs:
+    - ip: 192.168.34.72
+    initContainerStatuses:
+    - containerID: containerd://4b5262b6c9b998231572495059eac3728f4ad93563d5c8104201c23aafe33f7b
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init@sha256:ce36e6fc8457a3c79eab29ad7ca86ebc9220056c443e15502eeab7ceeef8496f
+      lastState: {}
+      name: aws-vpc-cni-init
+      ready: true
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: containerd://4b5262b6c9b998231572495059eac3728f4ad93563d5c8104201c23aafe33f7b
+          exitCode: 0
+          finishedAt: "2024-12-30T22:26:57Z"
+          reason: Completed
+          startedAt: "2024-12-30T22:26:57Z"
+    phase: Running
+    podIP: 192.168.34.72
+    podIPs:
+    - ip: 192.168.34.72
+    qosClass: Burstable
+    startTime: "2024-12-30T22:26:50Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      eks.amazonaws.com/timestamp: 2024-12-30 16:23:02.02577192 +0000 UTC m=+1218.782128025
+      kubectl.kubernetes.io/restartedAt: "2024-12-30T16:26:47Z"
+    creationTimestamp: "2024-12-30T17:35:33Z"
+    generateName: aws-node-
+    labels:
+      app.kubernetes.io/instance: aws-vpc-cni
+      app.kubernetes.io/name: aws-node
+      controller-revision-hash: 6f6679667f
+      k8s-app: aws-node
+      pod-template-generation: "2"
+    name: aws-node-llgph
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: aws-node
+      uid: 7512acca-3d8e-4840-8127-19b9ac9ae7a2
+    resourceVersion: "127704"
+    uid: 8b29218a-2881-4502-9060-7fc3f2e75c71
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-30-107.ec2.internal
+    containers:
+    - env:
+      - name: ADDITIONAL_ENI_TAGS
+        value: '{}'
+      - name: ANNOTATE_POD_IP
+        value: "false"
+      - name: AWS_VPC_CNI_NODE_PORT_SUPPORT
+        value: "true"
+      - name: AWS_VPC_ENI_MTU
+        value: "9001"
+      - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_EXTERNALSNAT
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_LOGLEVEL
+        value: DEBUG
+      - name: AWS_VPC_K8S_CNI_LOG_FILE
+        value: /host/var/log/aws-routed-eni/ipamd.log
+      - name: AWS_VPC_K8S_CNI_RANDOMIZESNAT
+        value: prng
+      - name: AWS_VPC_K8S_CNI_VETHPREFIX
+        value: eni
+      - name: AWS_VPC_K8S_PLUGIN_LOG_FILE
+        value: /var/log/aws-routed-eni/plugin.log
+      - name: AWS_VPC_K8S_PLUGIN_LOG_LEVEL
+        value: DEBUG
+      - name: CLUSTER_ENDPOINT
+        value: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+      - name: CLUSTER_NAME
+        value: agent-test-cluster
+      - name: DISABLE_INTROSPECTION
+        value: "false"
+      - name: DISABLE_METRICS
+        value: "false"
+      - name: DISABLE_NETWORK_RESOURCE_PROVISIONING
+        value: "false"
+      - name: ENABLE_IPv4
+        value: "true"
+      - name: ENABLE_IPv6
+        value: "false"
+      - name: ENABLE_POD_ENI
+        value: "false"
+      - name: ENABLE_PREFIX_DELEGATION
+        value: "false"
+      - name: ENABLE_SUBNET_DISCOVERY
+        value: "true"
+      - name: NETWORK_POLICY_ENFORCING_MODE
+        value: standard
+      - name: VPC_CNI_VERSION
+        value: v1.19.0
+      - name: VPC_ID
+        value: vpc-01a601d6dde9a7460
+      - name: WARM_ENI_TARGET
+        value: "1"
+      - name: WARM_PREFIX_TARGET
+        value: "1"
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni:v1.19.0-eksbuild.1
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: aws-node
+      ports:
+      - containerPort: 61678
+        hostPort: 61678
+        name: metrics
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+          - NET_RAW
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /host/etc/cni/net.d
+        name: cni-net-dir
+      - mountPath: /host/var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-lh6xz
+        readOnly: true
+    - args:
+      - --enable-ipv6=false
+      - --enable-network-policy=false
+      - --enable-cloudwatch-logs=false
+      - --enable-policy-event-logs=false
+      - --log-file=/var/log/aws-routed-eni/network-policy-agent.log
+      - --metrics-bind-addr=:8162
+      - --health-probe-bind-addr=:8163
+      - --conntrack-cache-cleanup-period=300
+      env:
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-eks-nodeagent
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /sys/fs/bpf
+        name: bpf-pin-path
+      - mountPath: /var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-lh6xz
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    initContainers:
+    - env:
+      - name: DISABLE_TCP_EARLY_DEMUX
+        value: "false"
+      - name: ENABLE_IPv6
+        value: "false"
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-vpc-cni-init
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-lh6xz
+        readOnly: true
+    nodeName: ip-192-168-30-107.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: aws-node
+    serviceAccountName: aws-node
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /sys/fs/bpf
+        type: ""
+      name: bpf-pin-path
+    - hostPath:
+        path: /opt/cni/bin
+        type: ""
+      name: cni-bin-dir
+    - hostPath:
+        path: /etc/cni/net.d
+        type: ""
+      name: cni-net-dir
+    - hostPath:
+        path: /var/log/aws-routed-eni
+        type: DirectoryOrCreate
+      name: log-dir
+    - hostPath:
+        path: /var/run/aws-node
+        type: DirectoryOrCreate
+      name: run-dir
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - name: kube-api-access-lh6xz
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:38Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:41Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:25:57Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:46Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:33Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://a58cf538d38262cdc5f493ea6d7ca88c91fc54dc915f63c62f00392621f97dbc
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent@sha256:f3280f090b6c5d3128357d8710db237931f5e1089e8017ab3d9cece429d77954
+      lastState: {}
+      name: aws-eks-nodeagent
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:45Z"
+    - containerID: containerd://af57396f24ae6dd4bffd44c130e2b28bcae73ca5f57e8d9e23adf89df7647d11
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni:v1.19.0
+      imageID: sha256:59728c6d6f3a030672ca78d141d1cfbfea4bb3259075f6614c40bbf375948595
+      lastState: {}
+      name: aws-node
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:43Z"
+    hostIP: 192.168.30.107
+    hostIPs:
+    - ip: 192.168.30.107
+    initContainerStatuses:
+    - containerID: containerd://f7eaff2202b16370c5cba38862df4e78aab9e7789ae5f96d93f9008844266005
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init@sha256:ce36e6fc8457a3c79eab29ad7ca86ebc9220056c443e15502eeab7ceeef8496f
+      lastState: {}
+      name: aws-vpc-cni-init
+      ready: true
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: containerd://f7eaff2202b16370c5cba38862df4e78aab9e7789ae5f96d93f9008844266005
+          exitCode: 0
+          finishedAt: "2024-12-30T17:35:38Z"
+          reason: Completed
+          startedAt: "2024-12-30T17:35:38Z"
+    phase: Running
+    podIP: 192.168.30.107
+    podIPs:
+    - ip: 192.168.30.107
+    qosClass: Burstable
+    startTime: "2024-12-30T17:35:33Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      eks.amazonaws.com/timestamp: 2024-12-30 16:23:02.02577192 +0000 UTC m=+1218.782128025
+      kubectl.kubernetes.io/restartedAt: "2024-12-30T16:26:47Z"
+    creationTimestamp: "2024-12-30T17:34:53Z"
+    generateName: aws-node-
+    labels:
+      app.kubernetes.io/instance: aws-vpc-cni
+      app.kubernetes.io/name: aws-node
+      controller-revision-hash: 6f6679667f
+      k8s-app: aws-node
+      pod-template-generation: "2"
+    name: aws-node-w2tqw
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: aws-node
+      uid: 7512acca-3d8e-4840-8127-19b9ac9ae7a2
+    resourceVersion: "127749"
+    uid: d33c012e-65ac-4edf-993e-8def318c63ea
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-47-225.ec2.internal
+    containers:
+    - env:
+      - name: ADDITIONAL_ENI_TAGS
+        value: '{}'
+      - name: ANNOTATE_POD_IP
+        value: "false"
+      - name: AWS_VPC_CNI_NODE_PORT_SUPPORT
+        value: "true"
+      - name: AWS_VPC_ENI_MTU
+        value: "9001"
+      - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_EXTERNALSNAT
+        value: "false"
+      - name: AWS_VPC_K8S_CNI_LOGLEVEL
+        value: DEBUG
+      - name: AWS_VPC_K8S_CNI_LOG_FILE
+        value: /host/var/log/aws-routed-eni/ipamd.log
+      - name: AWS_VPC_K8S_CNI_RANDOMIZESNAT
+        value: prng
+      - name: AWS_VPC_K8S_CNI_VETHPREFIX
+        value: eni
+      - name: AWS_VPC_K8S_PLUGIN_LOG_FILE
+        value: /var/log/aws-routed-eni/plugin.log
+      - name: AWS_VPC_K8S_PLUGIN_LOG_LEVEL
+        value: DEBUG
+      - name: CLUSTER_ENDPOINT
+        value: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+      - name: CLUSTER_NAME
+        value: agent-test-cluster
+      - name: DISABLE_INTROSPECTION
+        value: "false"
+      - name: DISABLE_METRICS
+        value: "false"
+      - name: DISABLE_NETWORK_RESOURCE_PROVISIONING
+        value: "false"
+      - name: ENABLE_IPv4
+        value: "true"
+      - name: ENABLE_IPv6
+        value: "false"
+      - name: ENABLE_POD_ENI
+        value: "false"
+      - name: ENABLE_PREFIX_DELEGATION
+        value: "false"
+      - name: ENABLE_SUBNET_DISCOVERY
+        value: "true"
+      - name: NETWORK_POLICY_ENFORCING_MODE
+        value: standard
+      - name: VPC_CNI_VERSION
+        value: v1.19.0
+      - name: VPC_ID
+        value: vpc-01a601d6dde9a7460
+      - name: WARM_ENI_TARGET
+        value: "1"
+      - name: WARM_PREFIX_TARGET
+        value: "1"
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      - name: MY_POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni:v1.19.0-eksbuild.1
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      name: aws-node
+      ports:
+      - containerPort: 61678
+        hostPort: 61678
+        name: metrics
+        protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+          - /app/grpc-health-probe
+          - -addr=:50051
+          - -connect-timeout=5s
+          - -rpc-timeout=5s
+        failureThreshold: 3
+        initialDelaySeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 10
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+          - NET_RAW
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /host/etc/cni/net.d
+        name: cni-net-dir
+      - mountPath: /host/var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wr9pq
+        readOnly: true
+    - args:
+      - --enable-ipv6=false
+      - --enable-network-policy=false
+      - --enable-cloudwatch-logs=false
+      - --enable-policy-event-logs=false
+      - --log-file=/var/log/aws-routed-eni/network-policy-agent.log
+      - --metrics-bind-addr=:8162
+      - --health-probe-bind-addr=:8163
+      - --conntrack-cache-cleanup-period=300
+      env:
+      - name: MY_NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-eks-nodeagent
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /sys/fs/bpf
+        name: bpf-pin-path
+      - mountPath: /var/log/aws-routed-eni
+        name: log-dir
+      - mountPath: /var/run/aws-node
+        name: run-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wr9pq
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    initContainers:
+    - env:
+      - name: DISABLE_TCP_EARLY_DEMUX
+        value: "false"
+      - name: ENABLE_IPv6
+        value: "false"
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0-eksbuild.1
+      imagePullPolicy: Always
+      name: aws-vpc-cni-init
+      resources:
+        requests:
+          cpu: 25m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /host/opt/cni/bin
+        name: cni-bin-dir
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wr9pq
+        readOnly: true
+    nodeName: ip-192-168-47-225.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: aws-node
+    serviceAccountName: aws-node
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /sys/fs/bpf
+        type: ""
+      name: bpf-pin-path
+    - hostPath:
+        path: /opt/cni/bin
+        type: ""
+      name: cni-bin-dir
+    - hostPath:
+        path: /etc/cni/net.d
+        type: ""
+      name: cni-net-dir
+    - hostPath:
+        path: /var/log/aws-routed-eni
+        type: DirectoryOrCreate
+      name: log-dir
+    - hostPath:
+        path: /var/run/aws-node
+        type: DirectoryOrCreate
+      name: run-dir
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - name: kube-api-access-wr9pq
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:00Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:03Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:02Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:15Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:34:53Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://7aed83de2f6f20a93cac5c90a41908fd200a00777af5df543043bc52f1216aef
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent@sha256:f3280f090b6c5d3128357d8710db237931f5e1089e8017ab3d9cece429d77954
+      lastState: {}
+      name: aws-eks-nodeagent
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:14Z"
+    - containerID: containerd://fda86df091b32b9ccf42fb9b7bbae632026db6d97c44a5da3b123f44e57cc876
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni:v1.19.0
+      imageID: sha256:59728c6d6f3a030672ca78d141d1cfbfea4bb3259075f6614c40bbf375948595
+      lastState: {}
+      name: aws-node
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:07Z"
+    hostIP: 192.168.47.225
+    hostIPs:
+    - ip: 192.168.47.225
+    initContainerStatuses:
+    - containerID: containerd://a777f9df205c5e7306a250f35722e09f17fa70dda4fba5437cbc75393f4d456e
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init@sha256:ce36e6fc8457a3c79eab29ad7ca86ebc9220056c443e15502eeab7ceeef8496f
+      lastState: {}
+      name: aws-vpc-cni-init
+      ready: true
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: containerd://a777f9df205c5e7306a250f35722e09f17fa70dda4fba5437cbc75393f4d456e
+          exitCode: 0
+          finishedAt: "2024-12-30T17:35:00Z"
+          reason: Completed
+          startedAt: "2024-12-30T17:35:00Z"
+    phase: Running
+    podIP: 192.168.47.225
+    podIPs:
+    - ip: 192.168.47.225
+    qosClass: Burstable
+    startTime: "2024-12-30T17:34:54Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:36:00Z"
+    generateName: coredns-586b798467-
+    labels:
+      eks.amazonaws.com/component: coredns
+      k8s-app: kube-dns
+      pod-template-hash: 586b798467
+    name: coredns-586b798467-gkrhq
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: coredns-586b798467
+      uid: 19c4a6f2-40a9-47e2-8e3f-c43337b47a05
+    resourceVersion: "127708"
+    uid: 2c80f7df-09c1-4659-b3bc-bdf601f47ec1
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/os
+              operator: In
+              values:
+              - linux
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+              - amd64
+              - arm64
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - kube-dns
+            topologyKey: kubernetes.io/hostname
+          weight: 100
+    containers:
+    - args:
+      - -conf
+      - /etc/coredns/Corefile
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        httpGet:
+          path: /health
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      name: coredns
+      ports:
+      - containerPort: 53
+        name: dns
+        protocol: UDP
+      - containerPort: 53
+        name: dns-tcp
+        protocol: TCP
+      - containerPort: 9153
+        name: metrics
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ready
+          port: 8181
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          memory: 170Mi
+        requests:
+          cpu: 100m
+          memory: 70Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          add:
+          - NET_BIND_SERVICE
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /etc/coredns
+        name: config-volume
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-2s68q
+        readOnly: true
+    dnsPolicy: Default
+    enableServiceLinks: true
+    nodeName: ip-192-168-30-107.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000000000
+    priorityClassName: system-cluster-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: coredns
+    serviceAccountName: coredns
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/control-plane
+    - key: CriticalAddonsOnly
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    topologySpreadConstraints:
+    - labelSelector:
+        matchLabels:
+          k8s-app: kube-dns
+      maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
+    volumes:
+    - configMap:
+        defaultMode: 420
+        items:
+        - key: Corefile
+          path: Corefile
+        name: coredns
+      name: config-volume
+    - name: kube-api-access-2s68q
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:36:04Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:36:00Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:25:57Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:36:04Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:36:00Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://d31352c4306ef215b1f01e7ce898831e19583bc9a2654dc65ac53bf3a6c014d9
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns@sha256:d21885a6632343ecd25d468b54681a0bd512055174bb17bc35a08cb38a965f12
+      lastState: {}
+      name: coredns
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:36:03Z"
+    hostIP: 192.168.30.107
+    hostIPs:
+    - ip: 192.168.30.107
+    phase: Running
+    podIP: 192.168.0.81
+    podIPs:
+    - ip: 192.168.0.81
+    qosClass: Burstable
+    startTime: "2024-12-30T17:36:00Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:25:57Z"
+    generateName: coredns-586b798467-
+    labels:
+      eks.amazonaws.com/component: coredns
+      k8s-app: kube-dns
+      pod-template-hash: 586b798467
+    name: coredns-586b798467-n9dfs
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: coredns-586b798467
+      uid: 19c4a6f2-40a9-47e2-8e3f-c43337b47a05
+    resourceVersion: "127750"
+    uid: 3d0323d2-d46e-490c-a5b3-afc5434164a7
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/os
+              operator: In
+              values:
+              - linux
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+              - amd64
+              - arm64
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: k8s-app
+                operator: In
+                values:
+                - kube-dns
+            topologyKey: kubernetes.io/hostname
+          weight: 100
+    containers:
+    - args:
+      - -conf
+      - /etc/coredns/Corefile
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 5
+        httpGet:
+          path: /health
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      name: coredns
+      ports:
+      - containerPort: 53
+        name: dns
+        protocol: UDP
+      - containerPort: 53
+        name: dns-tcp
+        protocol: TCP
+      - containerPort: 9153
+        name: metrics
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /ready
+          port: 8181
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          memory: 170Mi
+        requests:
+          cpu: 100m
+          memory: 70Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          add:
+          - NET_BIND_SERVICE
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /etc/coredns
+        name: config-volume
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-lwtkf
+        readOnly: true
+    dnsPolicy: Default
+    enableServiceLinks: true
+    nodeName: ip-192-168-47-225.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000000000
+    priorityClassName: system-cluster-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: coredns
+    serviceAccountName: coredns
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/control-plane
+    - key: CriticalAddonsOnly
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    topologySpreadConstraints:
+    - labelSelector:
+        matchLabels:
+          k8s-app: kube-dns
+      maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
+    volumes:
+    - configMap:
+        defaultMode: 420
+        items:
+        - key: Corefile
+          path: Corefile
+        name: coredns
+      name: config-volume
+    - name: kube-api-access-lwtkf
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:18Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:03Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:18Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:09Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://694fa3a10cf99f29783dc930a2b56bf5a3ddee56a0b71e49f8eda6d167802414
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+      imageID: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns@sha256:d21885a6632343ecd25d468b54681a0bd512055174bb17bc35a08cb38a965f12
+      lastState: {}
+      name: coredns
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:18Z"
+    hostIP: 192.168.47.225
+    hostIPs:
+    - ip: 192.168.47.225
+    phase: Running
+    podIP: 192.168.57.20
+    podIPs:
+    - ip: 192.168.57.20
+    qosClass: Burstable
+    startTime: "2024-12-30T17:35:09Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:34:53Z"
+    generateName: kube-proxy-
+    labels:
+      controller-revision-hash: 65f976f6bf
+      k8s-app: kube-proxy
+      pod-template-generation: "1"
+    name: kube-proxy-9nd87
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: kube-proxy
+      uid: 36c2748f-2bad-4ccd-a414-53420b221217
+    resourceVersion: "127744"
+    uid: a91e1ffe-9c43-4e21-8643-8268a131a01b
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-47-225.ec2.internal
+    containers:
+    - command:
+      - kube-proxy
+      - --v=2
+      - --config=/var/lib/kube-proxy-config/config
+      - --hostname-override=$(NODE_NAME)
+      env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imagePullPolicy: IfNotPresent
+      name: kube-proxy
+      resources:
+        requests:
+          cpu: 100m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/log
+        name: varlog
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /lib/modules
+        name: lib-modules
+        readOnly: true
+      - mountPath: /var/lib/kube-proxy/
+        name: kubeconfig
+      - mountPath: /var/lib/kube-proxy-config/
+        name: config
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-xfv94
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    nodeName: ip-192-168-47-225.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kube-proxy
+    serviceAccountName: kube-proxy
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /var/log
+        type: ""
+      name: varlog
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - hostPath:
+        path: /lib/modules
+        type: ""
+      name: lib-modules
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy
+      name: kubeconfig
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy-config
+      name: config
+    - name: kube-api-access-xfv94
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:34:59Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:34:54Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:02Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:34:59Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:34:53Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://aed9c279a9022901c100c0a0f54e03c49947840303064a601bbcfc941a89ce7e
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imageID: sha256:bc2394dbfc1cad4de38d472352bf9cc075e66829e390a27bf1d906fc429f758a
+      lastState: {}
+      name: kube-proxy
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:34:58Z"
+    hostIP: 192.168.47.225
+    hostIPs:
+    - ip: 192.168.47.225
+    phase: Running
+    podIP: 192.168.47.225
+    podIPs:
+    - ip: 192.168.47.225
+    qosClass: Burstable
+    startTime: "2024-12-30T17:34:54Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T22:26:50Z"
+    generateName: kube-proxy-
+    labels:
+      controller-revision-hash: 65f976f6bf
+      k8s-app: kube-proxy
+      pod-template-generation: "1"
+    name: kube-proxy-rr86c
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: kube-proxy
+      uid: 36c2748f-2bad-4ccd-a414-53420b221217
+    resourceVersion: "127967"
+    uid: 082e2e8b-323b-4b24-93c2-dedf89697f26
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-34-72.ec2.internal
+    containers:
+    - command:
+      - kube-proxy
+      - --v=2
+      - --config=/var/lib/kube-proxy-config/config
+      - --hostname-override=$(NODE_NAME)
+      env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imagePullPolicy: IfNotPresent
+      name: kube-proxy
+      resources:
+        requests:
+          cpu: 100m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/log
+        name: varlog
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /lib/modules
+        name: lib-modules
+        readOnly: true
+      - mountPath: /var/lib/kube-proxy/
+        name: kubeconfig
+      - mountPath: /var/lib/kube-proxy-config/
+        name: config
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wqmvv
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    nodeName: ip-192-168-34-72.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kube-proxy
+    serviceAccountName: kube-proxy
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /var/log
+        type: ""
+      name: varlog
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - hostPath:
+        path: /lib/modules
+        type: ""
+      name: lib-modules
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy
+      name: kubeconfig
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy-config
+      name: config
+    - name: kube-api-access-wqmvv
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:55Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:50Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:55Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:55Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:26:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://60000fca08a80f9374b68a8e9c322010a724f59d48680d14d74bb492b39cdbdd
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imageID: sha256:bc2394dbfc1cad4de38d472352bf9cc075e66829e390a27bf1d906fc429f758a
+      lastState: {}
+      name: kube-proxy
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T22:26:55Z"
+    hostIP: 192.168.34.72
+    hostIPs:
+    - ip: 192.168.34.72
+    phase: Running
+    podIP: 192.168.34.72
+    podIPs:
+    - ip: 192.168.34.72
+    qosClass: Burstable
+    startTime: "2024-12-30T22:26:50Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-30T17:35:33Z"
+    generateName: kube-proxy-
+    labels:
+      controller-revision-hash: 65f976f6bf
+      k8s-app: kube-proxy
+      pod-template-generation: "1"
+    name: kube-proxy-sb5jt
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: DaemonSet
+      name: kube-proxy
+      uid: 36c2748f-2bad-4ccd-a414-53420b221217
+    resourceVersion: "127713"
+    uid: e9d1e984-758c-4cf6-b395-07f0afceb5aa
+  spec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchFields:
+            - key: metadata.name
+              operator: In
+              values:
+              - ip-192-168-30-107.ec2.internal
+    containers:
+    - command:
+      - kube-proxy
+      - --v=2
+      - --config=/var/lib/kube-proxy-config/config
+      - --hostname-override=$(NODE_NAME)
+      env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: spec.nodeName
+      image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imagePullPolicy: IfNotPresent
+      name: kube-proxy
+      resources:
+        requests:
+          cpu: 100m
+      securityContext:
+        privileged: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/log
+        name: varlog
+      - mountPath: /run/xtables.lock
+        name: xtables-lock
+      - mountPath: /lib/modules
+        name: lib-modules
+        readOnly: true
+      - mountPath: /var/lib/kube-proxy/
+        name: kubeconfig
+      - mountPath: /var/lib/kube-proxy-config/
+        name: config
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-5h4gl
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostNetwork: true
+    nodeName: ip-192-168-30-107.ec2.internal
+    preemptionPolicy: PreemptLowerPriority
+    priority: 2000001000
+    priorityClassName: system-node-critical
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kube-proxy
+    serviceAccountName: kube-proxy
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/disk-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/pid-pressure
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/unschedulable
+      operator: Exists
+    - effect: NoSchedule
+      key: node.kubernetes.io/network-unavailable
+      operator: Exists
+    volumes:
+    - hostPath:
+        path: /var/log
+        type: ""
+      name: varlog
+    - hostPath:
+        path: /run/xtables.lock
+        type: FileOrCreate
+      name: xtables-lock
+    - hostPath:
+        path: /lib/modules
+        type: ""
+      name: lib-modules
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy
+      name: kubeconfig
+    - configMap:
+        defaultMode: 420
+        name: kube-proxy-config
+      name: config
+    - name: kube-api-access-5h4gl
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:37Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:33Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T22:25:57Z"
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:37Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-30T17:35:33Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://83def7553973e9c7d81652dbf797b34e42ec80f0994e2058540831302d125f5d
+      image: 066635153087.dkr.ecr.il-central-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+      imageID: sha256:bc2394dbfc1cad4de38d472352bf9cc075e66829e390a27bf1d906fc429f758a
+      lastState: {}
+      name: kube-proxy
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-30T17:35:37Z"
+    hostIP: 192.168.30.107
+    hostIPs:
+    - ip: 192.168.30.107
+    phase: Running
+    podIP: 192.168.30.107
+    podIPs:
+    - ip: 192.168.30.107
+    qosClass: Burstable
+    startTime: "2024-12-30T17:35:33Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2024-12-30T17:29:54Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: httpdexpose
+    namespace: default
+    resourceVersion: "79543"
+    uid: 0176d0ba-6789-4e1b-82cd-6bedf85242df
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 10.100.158.242
+    clusterIPs:
+    - 10.100.158.242
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30621
+      port: 2346
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: httpd-webapp
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - hostname: a0176d0ba67894e1b82cd6bedf85242d-715616133.us-east-1.elb.amazonaws.com
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2024-12-30T09:25:33Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "193"
+    uid: 9ca2bc5c-6f53-4cd8-8dce-60657dc7466e
+  spec:
+    clusterIP: 10.100.0.1
+    clusterIPs:
+    - 10.100.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"eks-extension-metrics-api","namespace":"kube-system"},"spec":{"ports":[{"name":"metrics-api","port":443,"protocol":"TCP","targetPort":10443}]}}
+    creationTimestamp: "2024-12-30T09:25:37Z"
+    name: eks-extension-metrics-api
+    namespace: kube-system
+    resourceVersion: "257"
+    uid: 799bdb5d-599d-42a6-9b4b-849fb6be037e
+  spec:
+    clusterIP: 10.100.76.199
+    clusterIPs:
+    - 10.100.76.199
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: metrics-api
+      port: 443
+      protocol: TCP
+      targetPort: 10443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      prometheus.io/port: "9153"
+      prometheus.io/scrape: "true"
+    creationTimestamp: "2024-12-30T09:29:22Z"
+    labels:
+      eks.amazonaws.com/component: kube-dns
+      k8s-app: kube-dns
+      kubernetes.io/cluster-service: "true"
+      kubernetes.io/name: CoreDNS
+    name: kube-dns
+    namespace: kube-system
+    resourceVersion: "895"
+    uid: 876e670f-e8ff-406f-aeb7-b6e1e79a90a6
+  spec:
+    clusterIP: 10.100.0.10
+    clusterIPs:
+    - 10.100.0.10
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: dns
+      port: 53
+      protocol: UDP
+      targetPort: 53
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: 53
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: 9153
+    selector:
+      k8s-app: kube-dns
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "2"
+    creationTimestamp: "2024-12-30T16:23:02Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/instance: aws-vpc-cni
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: aws-node
+      app.kubernetes.io/version: v1.19.0
+      helm.sh/chart: aws-vpc-cni-1.19.0
+      k8s-app: aws-node
+    name: aws-node
+    namespace: kube-system
+    resourceVersion: "128030"
+    uid: 7512acca-3d8e-4840-8127-19b9ac9ae7a2
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        k8s-app: aws-node
+    template:
+      metadata:
+        annotations:
+          eks.amazonaws.com/timestamp: 2024-12-30 16:23:02.02577192 +0000 UTC m=+1218.782128025
+          kubectl.kubernetes.io/restartedAt: "2024-12-30T16:26:47Z"
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/instance: aws-vpc-cni
+          app.kubernetes.io/name: aws-node
+          k8s-app: aws-node
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                  - linux
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  - amd64
+                  - arm64
+                - key: eks.amazonaws.com/compute-type
+                  operator: NotIn
+                  values:
+                  - fargate
+                  - hybrid
+                  - auto
+        containers:
+        - env:
+          - name: ADDITIONAL_ENI_TAGS
+            value: '{}'
+          - name: ANNOTATE_POD_IP
+            value: "false"
+          - name: AWS_VPC_CNI_NODE_PORT_SUPPORT
+            value: "true"
+          - name: AWS_VPC_ENI_MTU
+            value: "9001"
+          - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+            value: "false"
+          - name: AWS_VPC_K8S_CNI_EXTERNALSNAT
+            value: "false"
+          - name: AWS_VPC_K8S_CNI_LOGLEVEL
+            value: DEBUG
+          - name: AWS_VPC_K8S_CNI_LOG_FILE
+            value: /host/var/log/aws-routed-eni/ipamd.log
+          - name: AWS_VPC_K8S_CNI_RANDOMIZESNAT
+            value: prng
+          - name: AWS_VPC_K8S_CNI_VETHPREFIX
+            value: eni
+          - name: AWS_VPC_K8S_PLUGIN_LOG_FILE
+            value: /var/log/aws-routed-eni/plugin.log
+          - name: AWS_VPC_K8S_PLUGIN_LOG_LEVEL
+            value: DEBUG
+          - name: CLUSTER_ENDPOINT
+            value: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+          - name: CLUSTER_NAME
+            value: agent-test-cluster
+          - name: DISABLE_INTROSPECTION
+            value: "false"
+          - name: DISABLE_METRICS
+            value: "false"
+          - name: DISABLE_NETWORK_RESOURCE_PROVISIONING
+            value: "false"
+          - name: ENABLE_IPv4
+            value: "true"
+          - name: ENABLE_IPv6
+            value: "false"
+          - name: ENABLE_POD_ENI
+            value: "false"
+          - name: ENABLE_PREFIX_DELEGATION
+            value: "false"
+          - name: ENABLE_SUBNET_DISCOVERY
+            value: "true"
+          - name: NETWORK_POLICY_ENFORCING_MODE
+            value: standard
+          - name: VPC_CNI_VERSION
+            value: v1.19.0
+          - name: VPC_ID
+            value: vpc-01a601d6dde9a7460
+          - name: WARM_ENI_TARGET
+            value: "1"
+          - name: WARM_PREFIX_TARGET
+            value: "1"
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni:v1.19.0-eksbuild.1
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+              - /app/grpc-health-probe
+              - -addr=:50051
+              - -connect-timeout=5s
+              - -rpc-timeout=5s
+            failureThreshold: 3
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: aws-node
+          ports:
+          - containerPort: 61678
+            name: metrics
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /app/grpc-health-probe
+              - -addr=:50051
+              - -connect-timeout=5s
+              - -rpc-timeout=5s
+            failureThreshold: 3
+            initialDelaySeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          resources:
+            requests:
+              cpu: 25m
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+              - NET_RAW
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /host/opt/cni/bin
+            name: cni-bin-dir
+          - mountPath: /host/etc/cni/net.d
+            name: cni-net-dir
+          - mountPath: /host/var/log/aws-routed-eni
+            name: log-dir
+          - mountPath: /var/run/aws-node
+            name: run-dir
+          - mountPath: /run/xtables.lock
+            name: xtables-lock
+        - args:
+          - --enable-ipv6=false
+          - --enable-network-policy=false
+          - --enable-cloudwatch-logs=false
+          - --enable-policy-event-logs=false
+          - --log-file=/var/log/aws-routed-eni/network-policy-agent.log
+          - --metrics-bind-addr=:8162
+          - --health-probe-bind-addr=:8163
+          - --conntrack-cache-cleanup-period=300
+          env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon/aws-network-policy-agent:v1.1.5-eksbuild.1
+          imagePullPolicy: Always
+          name: aws-eks-nodeagent
+          resources:
+            requests:
+              cpu: 25m
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /host/opt/cni/bin
+            name: cni-bin-dir
+          - mountPath: /sys/fs/bpf
+            name: bpf-pin-path
+          - mountPath: /var/log/aws-routed-eni
+            name: log-dir
+          - mountPath: /var/run/aws-node
+            name: run-dir
+        dnsPolicy: ClusterFirst
+        hostNetwork: true
+        initContainers:
+        - env:
+          - name: DISABLE_TCP_EARLY_DEMUX
+            value: "false"
+          - name: ENABLE_IPv6
+            value: "false"
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/amazon-k8s-cni-init:v1.19.0-eksbuild.1
+          imagePullPolicy: Always
+          name: aws-vpc-cni-init
+          resources:
+            requests:
+              cpu: 25m
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /host/opt/cni/bin
+            name: cni-bin-dir
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: aws-node
+        serviceAccountName: aws-node
+        terminationGracePeriodSeconds: 10
+        tolerations:
+        - operator: Exists
+        volumes:
+        - hostPath:
+            path: /sys/fs/bpf
+            type: ""
+          name: bpf-pin-path
+        - hostPath:
+            path: /opt/cni/bin
+            type: ""
+          name: cni-bin-dir
+        - hostPath:
+            path: /etc/cni/net.d
+            type: ""
+          name: cni-net-dir
+        - hostPath:
+            path: /var/log/aws-routed-eni
+            type: DirectoryOrCreate
+          name: log-dir
+        - hostPath:
+            path: /var/run/aws-node
+            type: DirectoryOrCreate
+          name: run-dir
+        - hostPath:
+            path: /run/xtables.lock
+            type: FileOrCreate
+          name: xtables-lock
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 10%
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 3
+    desiredNumberScheduled: 3
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    numberUnavailable: 2
+    observedGeneration: 2
+    updatedNumberScheduled: 3
+- apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    annotations:
+      deprecated.daemonset.template.generation: "1"
+    creationTimestamp: "2024-12-30T09:29:21Z"
+    generation: 1
+    labels:
+      eks.amazonaws.com/component: kube-proxy
+      k8s-app: kube-proxy
+    name: kube-proxy
+    namespace: kube-system
+    resourceVersion: "127968"
+    uid: 36c2748f-2bad-4ccd-a414-53420b221217
+  spec:
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        k8s-app: kube-proxy
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          k8s-app: kube-proxy
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                  - linux
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  - amd64
+                  - arm64
+                - key: eks.amazonaws.com/compute-type
+                  operator: NotIn
+                  values:
+                  - fargate
+                  - auto
+        containers:
+        - command:
+          - kube-proxy
+          - --v=2
+          - --config=/var/lib/kube-proxy-config/config
+          - --hostname-override=$(NODE_NAME)
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.30.6-minimal-eksbuild.3
+          imagePullPolicy: IfNotPresent
+          name: kube-proxy
+          resources:
+            requests:
+              cpu: 100m
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/log
+            name: varlog
+          - mountPath: /run/xtables.lock
+            name: xtables-lock
+          - mountPath: /lib/modules
+            name: lib-modules
+            readOnly: true
+          - mountPath: /var/lib/kube-proxy/
+            name: kubeconfig
+          - mountPath: /var/lib/kube-proxy-config/
+            name: config
+        dnsPolicy: ClusterFirst
+        hostNetwork: true
+        priorityClassName: system-node-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: kube-proxy
+        serviceAccountName: kube-proxy
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - operator: Exists
+        volumes:
+        - hostPath:
+            path: /var/log
+            type: ""
+          name: varlog
+        - hostPath:
+            path: /run/xtables.lock
+            type: FileOrCreate
+          name: xtables-lock
+        - hostPath:
+            path: /lib/modules
+            type: ""
+          name: lib-modules
+        - configMap:
+            defaultMode: 420
+            name: kube-proxy
+          name: kubeconfig
+        - configMap:
+            defaultMode: 420
+            name: kube-proxy-config
+          name: config
+    updateStrategy:
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 10%
+      type: RollingUpdate
+  status:
+    currentNumberScheduled: 3
+    desiredNumberScheduled: 3
+    numberAvailable: 1
+    numberMisscheduled: 0
+    numberReady: 1
+    numberUnavailable: 2
+    observedGeneration: 1
+    updatedNumberScheduled: 3
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"cwagent-prometheus","namespace":"amazon-cloudwatch"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"cwagent-prometheus"}},"template":{"metadata":{"labels":{"app":"cwagent-prometheus"}},"spec":{"containers":[{"env":[{"name":"CI_VERSION","value":"k8s/1.3.29"}],"image":"public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929","imagePullPolicy":"Always","name":"cloudwatch-agent","resources":{"limits":{"cpu":"1000m","memory":"1000Mi"},"requests":{"cpu":"200m","memory":"200Mi"}},"volumeMounts":[{"mountPath":"/etc/cwagentconfig","name":"prometheus-cwagentconfig"},{"mountPath":"/etc/prometheusconfig","name":"prometheus-config"}]}],"serviceAccountName":"cwagent-prometheus","terminationGracePeriodSeconds":60,"volumes":[{"configMap":{"name":"prometheus-cwagentconfig"},"name":"prometheus-cwagentconfig"},{"configMap":{"name":"prometheus-config"},"name":"prometheus-config"}]}}}}
+    creationTimestamp: "2024-12-30T16:32:17Z"
+    generation: 2
+    name: cwagent-prometheus
+    namespace: amazon-cloudwatch
+    resourceVersion: "127721"
+    uid: fced4c2b-dc46-4643-905c-1460af4d2ea0
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: cwagent-prometheus
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-12-30T18:26:59Z"
+        creationTimestamp: null
+        labels:
+          app: cwagent-prometheus
+      spec:
+        containers:
+        - env:
+          - name: CI_VERSION
+            value: k8s/1.3.29
+          image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929
+          imagePullPolicy: Always
+          name: cloudwatch-agent
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/cwagentconfig
+            name: prometheus-cwagentconfig
+          - mountPath: /etc/prometheusconfig
+            name: prometheus-config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: cwagent-prometheus
+        serviceAccountName: cwagent-prometheus
+        terminationGracePeriodSeconds: 60
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: prometheus-cwagentconfig
+          name: prometheus-cwagentconfig
+        - configMap:
+            defaultMode: 420
+            name: prometheus-config
+          name: prometheus-config
+  status:
+    conditions:
+    - lastTransitionTime: "2024-12-30T16:32:17Z"
+      lastUpdateTime: "2024-12-30T18:27:00Z"
+      message: ReplicaSet "cwagent-prometheus-76974949db" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2024-12-30T22:25:57Z"
+      lastUpdateTime: "2024-12-30T22:25:57Z"
+      message: Deployment does not have minimum availability.
+      reason: MinimumReplicasUnavailable
+      status: "False"
+      type: Available
+    observedGeneration: 2
+    replicas: 1
+    unavailableReplicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"httpd-webapp","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"httpd-webapp"}},"template":{"metadata":{"labels":{"app":"httpd-webapp"}},"spec":{"containers":[{"image":"httpd","name":"nodejs-webapp","resources":{"limits":{"cpu":"500m"},"requests":{"cpu":"200m"}}}]}}}}
+    creationTimestamp: "2024-12-30T16:43:20Z"
+    generation: 1
+    name: httpd-webapp
+    namespace: default
+    resourceVersion: "128059"
+    uid: 3fda553a-671c-4e74-9399-cb2fe715abca
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: httpd-webapp
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: httpd-webapp
+      spec:
+        containers:
+        - image: httpd
+          imagePullPolicy: Always
+          name: nodejs-webapp
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2024-12-30T16:43:20Z"
+      lastUpdateTime: "2024-12-30T16:43:24Z"
+      message: ReplicaSet "httpd-webapp-5ccb7c4d57" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2024-12-30T22:27:13Z"
+      lastUpdateTime: "2024-12-30T22:27:13Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-30T09:29:22Z"
+    generation: 1
+    labels:
+      eks.amazonaws.com/component: coredns
+      k8s-app: kube-dns
+      kubernetes.io/name: CoreDNS
+    name: coredns
+    namespace: kube-system
+    resourceVersion: "127759"
+    uid: 6c2c4dd9-86ef-4df5-a2b7-a6dad147c450
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        eks.amazonaws.com/component: coredns
+        k8s-app: kube-dns
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 1
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          eks.amazonaws.com/component: coredns
+          k8s-app: kube-dns
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                  - linux
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  - amd64
+                  - arm64
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: k8s-app
+                    operator: In
+                    values:
+                    - kube-dns
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+        containers:
+        - args:
+          - -conf
+          - /etc/coredns/Corefile
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: coredns
+          ports:
+          - containerPort: 53
+            name: dns
+            protocol: UDP
+          - containerPort: 53
+            name: dns-tcp
+            protocol: TCP
+          - containerPort: 9153
+            name: metrics
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: 8181
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              memory: 170Mi
+            requests:
+              cpu: 100m
+              memory: 70Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+              - NET_BIND_SERVICE
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/coredns
+            name: config-volume
+            readOnly: true
+        dnsPolicy: Default
+        priorityClassName: system-cluster-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: coredns
+        serviceAccountName: coredns
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+        - key: CriticalAddonsOnly
+          operator: Exists
+        topologySpreadConstraints:
+        - labelSelector:
+            matchLabels:
+              k8s-app: kube-dns
+          maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+        volumes:
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: Corefile
+              path: Corefile
+            name: coredns
+          name: config-volume
+  status:
+    conditions:
+    - lastTransitionTime: "2024-12-30T09:29:22Z"
+      lastUpdateTime: "2024-12-30T09:33:14Z"
+      message: ReplicaSet "coredns-586b798467" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2024-12-30T22:26:03Z"
+      lastUpdateTime: "2024-12-30T22:26:03Z"
+      message: Deployment does not have minimum availability.
+      reason: MinimumReplicasUnavailable
+      status: "False"
+      type: Available
+    observedGeneration: 1
+    replicas: 2
+    unavailableReplicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-30T18:26:59Z"
+    generation: 1
+    labels:
+      app: cwagent-prometheus
+      pod-template-hash: 76974949db
+    name: cwagent-prometheus-76974949db
+    namespace: amazon-cloudwatch
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: cwagent-prometheus
+      uid: fced4c2b-dc46-4643-905c-1460af4d2ea0
+    resourceVersion: "127717"
+    uid: 558b2ca7-8cd3-4a29-a538-3644b3f35fef
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: cwagent-prometheus
+        pod-template-hash: 76974949db
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-12-30T18:26:59Z"
+        creationTimestamp: null
+        labels:
+          app: cwagent-prometheus
+          pod-template-hash: 76974949db
+      spec:
+        containers:
+        - env:
+          - name: CI_VERSION
+            value: k8s/1.3.29
+          image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929
+          imagePullPolicy: Always
+          name: cloudwatch-agent
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/cwagentconfig
+            name: prometheus-cwagentconfig
+          - mountPath: /etc/prometheusconfig
+            name: prometheus-config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: cwagent-prometheus
+        serviceAccountName: cwagent-prometheus
+        terminationGracePeriodSeconds: 60
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: prometheus-cwagentconfig
+          name: prometheus-cwagentconfig
+        - configMap:
+            defaultMode: 420
+            name: prometheus-config
+          name: prometheus-config
+  status:
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-30T16:32:17Z"
+    generation: 2
+    labels:
+      app: cwagent-prometheus
+      pod-template-hash: 797c8444cd
+    name: cwagent-prometheus-797c8444cd
+    namespace: amazon-cloudwatch
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: cwagent-prometheus
+      uid: fced4c2b-dc46-4643-905c-1460af4d2ea0
+    resourceVersion: "89059"
+    uid: 60d074e1-56f0-4537-8877-abf158dd85e8
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: cwagent-prometheus
+        pod-template-hash: 797c8444cd
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: cwagent-prometheus
+          pod-template-hash: 797c8444cd
+      spec:
+        containers:
+        - env:
+          - name: CI_VERSION
+            value: k8s/1.3.29
+          image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:1.300049.1b929
+          imagePullPolicy: Always
+          name: cloudwatch-agent
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/cwagentconfig
+            name: prometheus-cwagentconfig
+          - mountPath: /etc/prometheusconfig
+            name: prometheus-config
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: cwagent-prometheus
+        serviceAccountName: cwagent-prometheus
+        terminationGracePeriodSeconds: 60
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: prometheus-cwagentconfig
+          name: prometheus-cwagentconfig
+        - configMap:
+            defaultMode: 420
+            name: prometheus-config
+          name: prometheus-config
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-30T16:43:20Z"
+    generation: 1
+    labels:
+      app: httpd-webapp
+      pod-template-hash: 5ccb7c4d57
+    name: httpd-webapp-5ccb7c4d57
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: httpd-webapp
+      uid: 3fda553a-671c-4e74-9399-cb2fe715abca
+    resourceVersion: "128058"
+    uid: 12649067-c418-484a-94d5-e01c39f0e5b9
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: httpd-webapp
+        pod-template-hash: 5ccb7c4d57
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: httpd-webapp
+          pod-template-hash: 5ccb7c4d57
+      spec:
+        containers:
+        - image: httpd
+          imagePullPolicy: Always
+          name: nodejs-webapp
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-30T09:29:22Z"
+    generation: 1
+    labels:
+      eks.amazonaws.com/component: coredns
+      k8s-app: kube-dns
+      pod-template-hash: 586b798467
+    name: coredns-586b798467
+    namespace: kube-system
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: coredns
+      uid: 6c2c4dd9-86ef-4df5-a2b7-a6dad147c450
+    resourceVersion: "127754"
+    uid: 19c4a6f2-40a9-47e2-8e3f-c43337b47a05
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        eks.amazonaws.com/component: coredns
+        k8s-app: kube-dns
+        pod-template-hash: 586b798467
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          eks.amazonaws.com/component: coredns
+          k8s-app: kube-dns
+          pod-template-hash: 586b798467
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                  - linux
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  - amd64
+                  - arm64
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: k8s-app
+                    operator: In
+                    values:
+                    - kube-dns
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+        containers:
+        - args:
+          - -conf
+          - /etc/coredns/Corefile
+          image: 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.11.1-eksbuild.8
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: coredns
+          ports:
+          - containerPort: 53
+            name: dns
+            protocol: UDP
+          - containerPort: 53
+            name: dns-tcp
+            protocol: TCP
+          - containerPort: 9153
+            name: metrics
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: 8181
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              memory: 170Mi
+            requests:
+              cpu: 100m
+              memory: 70Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+              - NET_BIND_SERVICE
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /etc/coredns
+            name: config-volume
+            readOnly: true
+        dnsPolicy: Default
+        priorityClassName: system-cluster-critical
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: coredns
+        serviceAccountName: coredns
+        terminationGracePeriodSeconds: 30
+        tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+        - key: CriticalAddonsOnly
+          operator: Exists
+        topologySpreadConstraints:
+        - labelSelector:
+            matchLabels:
+              k8s-app: kube-dns
+          maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+        volumes:
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: Corefile
+              path: Corefile
+            name: coredns
+          name: config-volume
+  status:
+    fullyLabeledReplicas: 2
+    observedGeneration: 1
+    replicas: 2
+kind: List
+metadata:
+  resourceVersion: ""
