@@ -1,0 +1,55 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWGxKREs5eXkrSk13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRFeU16QXdPVEl3TVRCYUZ3MHpOREV5TWpnd09USTFNVEJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURIbjR4MXppYmhaVnIrbnpGVGl1L3ZaNDY1ajNsRm12WktTZzZ0NlRNb2xha04vMlJKbEFWcy8wSUUKbkZmdnRSVUFFYjdRQ1p1SE5mbytrLzN2VTV0dTlpRnBPaGFXbWZ4L1A2UktNVDgvdWE4VmczZUd0YTNlVi9xcQpGU2k4VWY5TENGQnFUZnhhWlVKR2twb0svRW40dUtjbm9nRUNCbFdpZGI4V0krd2kxRW5IZy9hVmZYV09JQ2tPCnBpT0d1SC9iUkNOSzVZMkRSdW5mKzdJMS9pQnY5SXZvUHNzRDBHWkQvY0VoNFZ3OGRhSmdxU09TN0hpd1VsVkgKOWhRNmNiRTYrRDhkN0RFRkNQRlUzUFFmV2ZTRlBNRFBZSXo0dCszbWg1b3hRcVlpNnY4YzBUZUIrb1lOTVlsMQpXSWNOemZXTDJGb1BSN3A0ZG9GK1BLSzFOVE8vQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRbDg0MmozT0lDcVZsYzF3SzZMdG9SRExWQmR6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXJyZHBzTWtHRQpkbXVJdkMwanRZSjlMVEY2aWlMMW56THJrZzM3TWJxdXRSR2xyYTROejhmN29lWEdVZlZhaG51clpoZ28xdkI5CjZJa05NN3pKV2hQZDZZaFlybUwwTnV1QUhmSWM1SFpxWTBvOURYMmFQY3g4QzhpNWdFRHB0ZVkxOVF6VW9XQnoKZGMwcmcwUnZoQkVYTG95L0FSdmFKd3VWUVUxMCtlN0NWdnNRZzVLLy9mWElyR3J1TGw5c1hkRzhWMWtNSG9NQgpIWFp2TDNKWWd0WEttU0t5dTdkYVJmUWpidlNVcVlUZVloN1JISmliQldUdUtzcEtTQzVweE5PU0tXMkZYTG5ECk5qN3BKUW04ZGY2OFphbENNQ0hvcllMQll5Nmt5MytRWEJ6UktucE9WdE91bC84MHJtTTJWY1cybXB5RUtmZ2wKWE1vOVRBNUNYYkh0Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+  name: agent-test-cluster.us-east-1.eksctl.io
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWGxKREs5eXkrSk13RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRFeU16QXdPVEl3TVRCYUZ3MHpOREV5TWpnd09USTFNVEJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURIbjR4MXppYmhaVnIrbnpGVGl1L3ZaNDY1ajNsRm12WktTZzZ0NlRNb2xha04vMlJKbEFWcy8wSUUKbkZmdnRSVUFFYjdRQ1p1SE5mbytrLzN2VTV0dTlpRnBPaGFXbWZ4L1A2UktNVDgvdWE4VmczZUd0YTNlVi9xcQpGU2k4VWY5TENGQnFUZnhhWlVKR2twb0svRW40dUtjbm9nRUNCbFdpZGI4V0krd2kxRW5IZy9hVmZYV09JQ2tPCnBpT0d1SC9iUkNOSzVZMkRSdW5mKzdJMS9pQnY5SXZvUHNzRDBHWkQvY0VoNFZ3OGRhSmdxU09TN0hpd1VsVkgKOWhRNmNiRTYrRDhkN0RFRkNQRlUzUFFmV2ZTRlBNRFBZSXo0dCszbWg1b3hRcVlpNnY4YzBUZUIrb1lOTVlsMQpXSWNOemZXTDJGb1BSN3A0ZG9GK1BLSzFOVE8vQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJRbDg0MmozT0lDcVZsYzF3SzZMdG9SRExWQmR6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXJyZHBzTWtHRQpkbXVJdkMwanRZSjlMVEY2aWlMMW56THJrZzM3TWJxdXRSR2xyYTROejhmN29lWEdVZlZhaG51clpoZ28xdkI5CjZJa05NN3pKV2hQZDZZaFlybUwwTnV1QUhmSWM1SFpxWTBvOURYMmFQY3g4QzhpNWdFRHB0ZVkxOVF6VW9XQnoKZGMwcmcwUnZoQkVYTG95L0FSdmFKd3VWUVUxMCtlN0NWdnNRZzVLLy9mWElyR3J1TGw5c1hkRzhWMWtNSG9NQgpIWFp2TDNKWWd0WEttU0t5dTdkYVJmUWpidlNVcVlUZVloN1JISmliQldUdUtzcEtTQzVweE5PU0tXMkZYTG5ECk5qN3BKUW04ZGY2OFphbENNQ0hvcllMQll5Nmt5MytRWEJ6UktucE9WdE91bC84MHJtTTJWY1cybXB5RUtmZ2wKWE1vOVRBNUNYYkh0Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://F23DC7C78AD3258975EDB91CA23A39B6.gr7.us-east-1.eks.amazonaws.com
+  name: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+contexts:
+- context:
+    cluster: agent-test-cluster.us-east-1.eksctl.io
+    user: i-078c835a829db99a5@agent-test-cluster.us-east-1.eksctl.io
+  name: i-078c835a829db99a5@agent-test-cluster.us-east-1.eksctl.io
+- context:
+    cluster: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+    user: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+  name: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+current-context: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+kind: Config
+preferences: {}
+users:
+- name: i-078c835a829db99a5@agent-test-cluster.us-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - eks
+      - get-token
+      - --output
+      - json
+      - --cluster-name
+      - agent-test-cluster
+      - --region
+      - us-east-1
+      command: aws
+      env:
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: regional
+      provideClusterInfo: false
+- name: arn:aws:eks:us-east-1:820242912925:cluster/agent-test-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - us-east-1
+      - eks
+      - get-token
+      - --cluster-name
+      - agent-test-cluster
+      - --output
+      - json
+      command: aws
